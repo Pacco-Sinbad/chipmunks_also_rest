@@ -23,15 +23,16 @@ app.get('/', (req,res)=> {
     res.sendFile(__dirname + '/index.html')
 })
 
-app.get('/api/:poop', (request, response) => {
-    const userName = request.params.poop.toLowerCase()
-    if(users[userName]){
-        response.json(users[userName])
-    }
+// this is how we can pull info from the api that is hard coded. probably not useful in this instance but it i am still experimenting with all of this and this was a useful way to test that the server was live on cyclic
+// app.get('/api/:poop', (request, response) => {
+//     const userName = request.params.poop.toLowerCase()
+//     if(users[userName]){
+//         response.json(users[userName])
+//     }
     // else{
         // response.json(rappers['unknown'])
     // }
-})
+//})
 
 app.post('/api/users/mathias/new_entry', (req,res)=> {
     const {entry_title, log} = req.body
