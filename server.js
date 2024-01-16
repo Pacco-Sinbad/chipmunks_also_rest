@@ -23,6 +23,16 @@ app.get('/', (req,res)=> {
     res.sendFile(__dirname + '/index.html')
 })
 
+app.get('/api/:poop', (request, response) => {
+    const userName = request.params.poop.toLowerCase()
+    if(users[userName]){
+        response.json(users[userName])
+    }
+    // else{
+        // response.json(rappers['unknown'])
+    // }
+})
+
 app.post('/api/users/mathias/new_entry', (req,res)=> {
     const {entry_title, log} = req.body
     const newEntryDateTime = Date()
