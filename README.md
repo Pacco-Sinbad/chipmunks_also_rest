@@ -12,3 +12,8 @@
 1/14/2024
     -I created the html file for testing the api.
     -I also created the server files and the majority of other files im going to need. The majority of this project will be based on user use. I need to make sure everything is diplayed properly when retrieving information from the API
+1/15/2023
+    -I implemented the ability to post new entries to the api
+    -I created the users object and added myself as a user. This object contains the logs object and the logs object contains the datetime object. finally the users submission is store as key value pairs in the datetime object. the reason for so many levels is the user will contain other resources and we will want to be able to obtain specific logs based on the date they were submitted so the user can look back at what they did previously.
+    ***in the future I want the user to to have the ability to distinguish between different gardens or plant types that they name. they will be able to create logs specific for that type. this could probably be included as another key value pair within the datetime object when they create their submission. this could then be used to sort later.
+    ***I still need to create a page that updates for the user but first i want to make sure i'm able to update the api. currently the results of what i submit are just logged on the console.
