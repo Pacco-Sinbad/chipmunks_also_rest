@@ -43,8 +43,8 @@ MongoClient.connect('mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mon
             res.sendFile(__dirname + '/index.html')
         })
 
-        app.listen(PORT, ()=> {
-            console.log(`listening on ${8000}`)
+        app.listen(process.env.PORT || PORT, () => {
+            console.log(`Server running on port ${PORT}`)
         })
 
     })
