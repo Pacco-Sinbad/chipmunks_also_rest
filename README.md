@@ -20,3 +20,5 @@
 1/16/2024
     -I created and connected the mongo atlas database to the server
     -I hosted the server on cyclic under the url https://gardenmonk.cyclic.app/
+    -I also created the userlist database in the mongo client to hold the the existing user info to avoid creating accounts with the same username. this will be essential in accessing the users data. 
+    ***I need to make the username dynamic based on them logging into the site this is top priority
