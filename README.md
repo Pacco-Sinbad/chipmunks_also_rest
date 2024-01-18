@@ -26,3 +26,5 @@
     -I think the index.html can remain as the landing page and log in. I just need to change the forms on there and then redirect from that page to my ejs template. I'm also thinking that the sign in button will need to be tied to the client side JS in order to set the variable for the username and give the user access to their logs that they have created.
     -The priority will be the log in, creation of observations by the user that go only in their collection, and being able to log all of their entries. Later I will want the user to be able to sort through their entries with different search parameters but for now they just need to be able to find what they have already written.
     -Today I was able to set up the two posts to create a new user and to check if a user exists. 
+    -I set up the landing page ejs for the user when they sign in or sign up
+    -I need to figure out how to allow the user to make post and get requests from the ejs that tie directly to their database collection. 

@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
-//ZSJgIL8KWdrKJAlN
+let stringy = 'ZSJgIL8KWdrKJAlN'
 
 //This is just my tester API
 // let users = {
@@ -22,7 +22,7 @@ app.set('view engine', 'ejs')
 // }
 
 
-MongoClient.connect('mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mongodb.net/?retryWrites=true&w=majority')
+MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.net/?retryWrites=true&w=majority`)
     .then(client => {
         console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
@@ -37,27 +37,35 @@ MongoClient.connect('mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mon
 
         //I am using this to look through the list of usernames. currently it just logs the contents of the database. i will have to do more work to make this useful
         app.post('/api/set_new_user', (req,res) =>{
+            const {username, password} = req.body
             const newUser = req.body
             userListDB.collection('Users')
-                .insertOne(newUser)
-                .then(result => {
-                    console.log(result)
-                    res.sendFile(__dirname + '/index.html')
+                .findOne({username: username})
+                .then(user =>{
+                    if(user){
+                        res.send('this username is not available')
+                    }else if(password.length < 8){
+                        res.send('Please use a password that is at least 8 characters long')
+                    }else{
+                        userListDB.collection('Users')
+                        .insertOne(newUser)
+                        .then(result => {
+                            res.render('user_landing_page.ejs', {currentUser: username })
+                        })
+                    }
                 })
+               
         })
 
         app.post('/api/findusername', (req,res) =>{
             const {usernameExisting, passwordExisting} = req.body
-            console.log(usernameExisting)
             userListDB.collection('Users')
                 .findOne({username: usernameExisting, password: passwordExisting})
                 .then(user => {
                     if(user){
-                        res.send('User Authenticated')
-                        console.log(user)
+                        res.render('user_landing_page.ejs', {currentUser: usernameExisting})
                     }else{
-                        res.send('there is no match for these credentials')
-                        console.log(user)
+                        res.send('there is no match for these credentials. both fields are case sensitive')
                     } 
                    
                 })
@@ -83,16 +91,17 @@ MongoClient.connect('mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mon
         // })
         app.post('/api/new_entry', (req,res)=> {
             const newEntryDateTime = new Date();
-            const {entry_title, log} = req.body;
+            const {entry_title, category, observations} = req.body;
             if(entry_title == '' || log == ''){
                 return res.status(404).send('Please fill out the title and observations fields')
             };
             const newEntry = {
                 newEntryDateTime,
                 entry_title,
-                log
+                category,
+                observations
             };
-            mathias
+            
                 .insertOne(newEntry)
                 .then(result =>{
                     console.log(result)

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome <%= currentUser %> to your garden journal</h1>
+    <h3>to make an entry please use the form below</h3>
+    <h3>to look back at all your past entries click <form action="/api/journal" method="GET"><button>here</button></form></h3>
+    <form action="/api/new_entry" method="POST">
+        <label for="entry_title">
+            <input type="text" name="entry_title" id="entry_title">
+        </label>
+        <label for="category">
+            <input type="text" name="category" id="category">
+        </label>
+        <label for="observations">
+            <input type="text" name="observations" id="observations">
+        </label>
+    </form>
+    <script src="public/main.js"></script>
+</body>
+</html>
