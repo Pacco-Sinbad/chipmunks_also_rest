@@ -6,18 +6,31 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcom to your garden log!</h1>
-    <h2>Please use the textfields below to make your first entry</h2>
-    <form action="/api/new_entry" method="POST">
-        <label for="entryTitle">Entry Title</label>
-        <input type="text" name="entry_title" id="entryTitle" placeholder="Entry Title">
-        <label for="notes">Observations</label>
-        <textarea name="log" id="notes" cols="30" rows="20" placeholder="please record your observations"></textarea>
-        <button>Submit Entry</button>
+    <h1>Welcom to The Garden Monk!</h1>
+    <h2>Your personal online journal for gardening!!!!</h2>
+    <span>Please either log in or sign up to continue.</span>
+    <form action="/api/set_new_user" method="POST">
+        <label for="username">username</label>
+        <input type="text" name="username" id="username" placeholder="username">
+        <label for="password">password</label>
+        <input type="text" name="password" id="password" placeholder="password">
+        <button>Sign Up</button>
     </form>
-    <form action="/api/findusername">
-        <button>Submit</button>
+    <form action="/api/findusername" method="POST">
+        <label for="usernameExisting">username</label>
+        <input type="text" name="usernameExisting" id="usernameExisting" placeholder="username">
+        <label for="passwordExisting">password</label>
+        <input type="text" name="passwordExisting" id="passwordExisting" placeholder="password">
+        <button>Sign In</button>
     </form>
     <script src="public/main.js"></script>
 </body>
 </html>
+
+
+
+<!-- <label for="entryTitle">Entry Title</label>
+        <input type="text" name="entry_title" id="entryTitle" placeholder="Entry Title">
+        <label for="notes">Observations</label>
+        <textarea name="log" id="notes" cols="30" rows="20" placeholder="please record your observations"></textarea>
+        <button>Submit Entry</button> -->

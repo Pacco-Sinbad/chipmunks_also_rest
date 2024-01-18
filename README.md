@@ -22,3 +22,7 @@
     -I hosted the server on cyclic under the url https://gardenmonk.cyclic.app/
     -I also created the userlist database in the mongo client to hold the the existing user info to avoid creating accounts with the same username. this will be essential in accessing the users data. 
     ***I need to make the username dynamic based on them logging into the site this is top priority
+1/17/2024
+    -I think the index.html can remain as the landing page and log in. I just need to change the forms on there and then redirect from that page to my ejs template. I'm also thinking that the sign in button will need to be tied to the client side JS in order to set the variable for the username and give the user access to their logs that they have created.
+    -The priority will be the log in, creation of observations by the user that go only in their collection, and being able to log all of their entries. Later I will want the user to be able to sort through their entries with different search parameters but for now they just need to be able to find what they have already written.
+    -Today I was able to set up the two posts to create a new user and to check if a user exists. 

@@ -28,21 +28,38 @@ MongoClient.connect('mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mon
         const userListDB = client.db('UserList')
         const userlist = userListDB.collection('Users')
         const userLogsDB = client.db('UserLogs')
-        const mathias = userLogsDB.collection('mathias')//this is where we set the users specific log using their user name. this will keep all of their observations in their own collection. the two areas that mathias are should be filled with with a template literal pointing at the users username.
-        let user = 'Mathias'
-        user = user.toLowerCase()
+        const loggedInUser = userLogsDB.collection(`mathias`)//this is where we set the users specific log using their user name. this will keep all of their observations in their own collection. the two areas that mathias are should be filled with with a template literal pointing at the users username.
 
         app.get('/', (req,res)=> {
             res.sendFile(__dirname + '/index.html')
         })
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //I am using this to look through the list of usernames. currently it just logs the contents of the database. i will have to do more work to make this useful
-        app.get('/api/findusername', (req,res) =>{
+        app.post('/api/set_new_user', (req,res) =>{
+            const newUser = req.body
             userListDB.collection('Users')
-                .find()
-                .toArray()
-                .then(results => {
-                    console.log(results)
+                .insertOne(newUser)
+                .then(result => {
+                    console.log(result)
+                    res.sendFile(__dirname + '/index.html')
+                })
+        })
+
+        app.post('/api/findusername', (req,res) =>{
+            const {usernameExisting, passwordExisting} = req.body
+            console.log(usernameExisting)
+            userListDB.collection('Users')
+                .findOne({username: usernameExisting, password: passwordExisting})
+                .then(user => {
+                    if(user){
+                        res.send('User Authenticated')
+                        console.log(user)
+                    }else{
+                        res.send('there is no match for these credentials')
+                        console.log(user)
+                    } 
+                   
                 })
 
        })
@@ -83,7 +100,7 @@ MongoClient.connect('mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mon
                 })
                 .catch(error => console.error(error))          
         })
-
+/////////////////////////////////////////////////////////////////////////////////////////
         app.listen(process.env.PORT || PORT, () => {
             console.log(`Server running on port ${PORT}`)
         })
