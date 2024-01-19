@@ -123,7 +123,7 @@ MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.n
          
         })
 /////////////////////////////////////////////////////////////////////////////////////////
-        app.listen(process.env.PORT || PORT, () => {
+        app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`)
         })
 
