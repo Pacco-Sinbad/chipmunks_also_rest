@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
-const PORT = 8000
+const PORT = process.env.PORT || 3000
 const cors = require('cors')
 app.use (cors())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -11,9 +11,28 @@ app.use(express.static('public'))
 app.set('view engine', 'ejs')
 var dotenv = require('dotenv')
 dotenv.config()
-var url = process.env.MONGOLAB_URI
+var uri = process.env.MONGOLAB_URI
 
-MongoClient.connect(url)//////this is not secure. Do Not Push
+const client = new MongoClient(uri);
+
+app.get("/items/:my_item", async (req, res) => {
+    let my_item = req.params.my_item;
+    let item = await client.db("my_db")
+                .collection("my_collection")
+                .findOne({my_item: my_item})
+
+    return res.json(item)
+})
+
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    // connection to mongo is successful, listen for requests
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+});
+
+MongoClient.connect(uri)//////this is not secure. Do Not Push
     .then(client => {
         console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
