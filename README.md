@@ -45,3 +45,8 @@
         i would be interested in providing a list of seed vendors that i have personally used and enjoyed
         i would like to create a blog section for myself or certain users to post helpful tips and tricks
         i would like to create a reward system that gives users badges based on how many observations they have made and the longest streak of days theyve gone making observations
+1/19/2024
+    -I was able to successfully host the website on Render
+    -I had encountered an issue where the server was not receiving the connection string in order to connect to mongodb. the solution was to add the secret file in the environments tab in render. this makes sense because without that file there is no way for mongodbclient to access the credentials. I was just unsure of how to give it the credentials in a secure way. there is documentation on the issue and i think i may have made it worse than it was but it was still a vague situation. I think the majority of the issue derived from my inexpreience.
+    -that being solved i can now focus on the to do list that I described in the previous entry.
+    -I also added logic that requires all usernames to be at least three characters long.

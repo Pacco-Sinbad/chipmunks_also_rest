@@ -34,6 +34,8 @@ MongoClient.connect(uri)
                 .then(user =>{
                     if(user){
                         res.render('username_exists.ejs')
+                    }else if(username.length < 3){
+                        res.render('username_exists.ejs')
                     }else if(password.length < 8){
                         res.render('fix_your_password.ejs')
                     }else{
