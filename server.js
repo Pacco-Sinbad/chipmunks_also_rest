@@ -9,29 +9,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
-
 var dotenv = require('dotenv')
 dotenv.config()
+var uri = process.env.MONGOLAB_URI
 
-const uri = process.env.MONGO_CONNECTION_STRING;
-const client = new MongoClient(uri);
-
-app.get("/items/:my_item", async (req, res) => {
-    let my_item = req.params.my_item;
-    let item = await client.db("my_db")
-                .collection("my_collection")
-                .findOne({my_item: my_item})
-
-    return res.json(item)
-})
-
-client.connect(err => {
-    if(err){ console.error(err); return false;}
-    // connection to mongo is successful, listen for requests
-    app.listen(PORT, () => {
-        console.log("listening for requests");
-    })
-});
 
 MongoClient.connect(uri)//////this is not secure. Do Not Push
     .then(client => {
