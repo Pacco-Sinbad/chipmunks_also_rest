@@ -26,7 +26,7 @@ MongoClient.connect(uri)//////this is not secure. Do Not Push
             res.render('index.ejs')
         })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+ 
         app.post('/api/set_new_user', (req,res) =>{
             const {username, password} = req.body
             const newUser = req.body
