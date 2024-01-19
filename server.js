@@ -10,17 +10,6 @@ app.set('view engine', 'ejs')
 
 let stringy = 'ZSJgIL8KWdrKJAlN'
 
-//This is just my tester API
-// let users = {
-//     'mathias' : {
-//         'logs' : {
-//             'date_time' :{
-//                 'test': 'tester',
-//             }
-//         },
-//     },
-// }
-
 
 MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.net/?retryWrites=true&w=majority`)
     .then(client => {
@@ -28,14 +17,13 @@ MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.n
         const userListDB = client.db('UserList')
         const userlist = userListDB.collection('Users')
         const userLogsDB = client.db('UserLogs')
-        const loggedInUser = userLogsDB.collection(`mathias`)//this is where we set the users specific log using their user name. this will keep all of their observations in their own collection. the two areas that mathias are should be filled with with a template literal pointing at the users username.
+        const loggedInUser = userLogsDB.collection('userToBeSpecified')//this is where we set the users specific log using their user name. this will keep all of their observations in their own collection. UserToBeSpecified should not contain any resources
 
         app.get('/', (req,res)=> {
             res.sendFile(__dirname + '/index.html')
         })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //I am using this to look through the list of usernames. currently it just logs the contents of the database. i will have to do more work to make this useful
         app.post('/api/set_new_user', (req,res) =>{
             const {username, password} = req.body
             const newUser = req.body
@@ -43,9 +31,9 @@ MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.n
                 .findOne({username: username})
                 .then(user =>{
                     if(user){
-                        res.send('this username is not available')
+                        res.sendFile(__dirname + '/username_exists.html')
                     }else if(password.length < 8){
-                        res.send('Please use a password that is at least 8 characters long')
+                        res.sendFile(__dirname + '/fix_your_password.html')
                     }else{
                         userListDB.collection('Users')
                         .insertOne(newUser)
@@ -65,49 +53,74 @@ MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.n
                     if(user){
                         res.render('user_landing_page.ejs', {currentUser: usernameExisting})
                     }else{
-                        res.send('there is no match for these credentials. both fields are case sensitive')
-                    } 
-                   
+                        res.sendFile(__dirname + '/incorrect_credentials.html')
+                    }                   
                 })
-
        })
-        //
-        // app.post('/api/new_user', (res,res)=>{
-        //     const newEntryDateTime = new Date();
-        //     const {username, password} = req.body;
-        //     if(username.length < 5 || password.length < 8){
-        //         return res.status(404).send('Please be sure to use a username at least five characters long and a password at least eight characters long')
-        //     }
-        //     //else if(
-        //     //     app.get('/api/userlist', (req,res)=>{
-        //     //         ul.collection('Users')
-        //     //         .find()
-        //     //         .toArray()
-        //     //         .then(results =>{
-        //     //             console.log
-        //     //         })
-        //     //     })
-        //     // ){}
-        // })
+  /////////////////////////////////////////////////////////////////////////////////////////////
         app.post('/api/new_entry', (req,res)=> {
-            const newEntryDateTime = new Date();
+            const Time = new Date();
+            const dateTime = Time.toLocaleString()
+            
             const {entry_title, category, observations} = req.body;
-            if(entry_title == '' || log == ''){
+            const currentUser = req.body.currentUser;
+            if(entry_title == '' || observations == ''){
                 return res.status(404).send('Please fill out the title and observations fields')
             };
             const newEntry = {
-                newEntryDateTime,
+                dateTime,
                 entry_title,
                 category,
                 observations
             };
-            
+            userLogsDB.collection(currentUser)
                 .insertOne(newEntry)
                 .then(result =>{
                     console.log(result)
-                    res.sendFile(__dirname + '/entryComplete.html')
+                    console.log(dateTime)
+                    res.render('entry_made.ejs', {currentUser: currentUser})
                 })
                 .catch(error => console.error(error))          
+        })
+        ///////
+        app.post('/api/another_new_entry', (req, res) => {
+            const currentUser = req.body.currentUser
+            res.render('user_landing_page.ejs', {currentUser: currentUser})
+        })
+        ///////
+        app.post('/api/journal', (req,res) =>{
+            const currentUser = req.body.currentUser;
+            userLogsDB.collection(currentUser)
+                .find()
+                .toArray()
+                .then(results => {
+                    res.render('user_journal.ejs', {entries: results, currentUser: currentUser})
+                })
+                .catch(error => console.error(error))
+        })
+/////////////////////////////////////////////////////////////////////////////////////////
+        app.delete('/api/remove_observation', (req, res) =>{
+            const currentUser = req.body.currentUser
+            const entryToRemove = req.body.dateTime
+            console.log(currentUser)
+            console.log(entryToRemove)
+            userLogsDB.collection(currentUser)
+                .findOneAndDelete({dateTime: entryToRemove})
+                .then(result =>{
+                    if(result){
+                        console.log('observation deleted:', result)
+                    }else {console.log('no observation found')
+                            console.log({dateTime: entryToRemove})}
+                    userLogsDB.collection(currentUser)
+                        .find()
+                        .toArray()
+                        .then(results => {
+                                res.render('user_journal.ejs', {entries: results, currentUser: currentUser})
+                            })
+                        .catch(error => console.error(error))
+                })
+                .catch(error=> { console.error(error)})
+         
         })
 /////////////////////////////////////////////////////////////////////////////////////////
         app.listen(process.env.PORT || PORT, () => {
@@ -120,25 +133,7 @@ MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.n
 
 
 
+ 
 
 
 
-
-// this is how we can pull info from the api that is hard coded. probably not useful in this instance but it i am still experimenting with all of this and this was a useful way to test that the server was live on cyclic
-// app.get('/api/:poop', (request, response) => {
-//     const userName = request.params.poop.toLowerCase()
-//     if(users[userName]){
-//         response.json(users[userName])
-//     }
-    // else{
-        // response.json(rappers['unknown'])
-    // }
-//})
-
- // const {entry_title, log} = req.body
-            // const newEntryDateTime = Date()
-            // if (!entry_title || !log){
-            //     return res.status(400).send('Both entry name and entry body are required')
-            // }
-            // users['mathias'].logs[newEntryDateTime] = {[entry_title]: log};
-            // console.log(users)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body data-current-user="<%= currentUser%>" >
+    <h1>Welcome <%=currentUser%> to your Complete Observation Journal</h1>
+    <span>All of the entries you have made are listed below in order of the time you made them from newest to oldest</span>
+    <form action="/api/another_new_entry" method="POST">
+        <input type="hidden" name="currentUser" value="<%= currentUser%>">
+        <span>To make a new observation entry click <button>here.</button></span>
+    </form>
+        
+    <ul class="entries">
+        <%let entriesRev = entries.reverse()%>
+        <% for (let i = 0; i< entries.length; i++) { %>
+            <li class="observation">
+                <span>Date <%= entries[i].dateTime %></span>
+                <span>Title <%= entries[i].entry_title %></span>
+                <span>Category <%= entries[i].category %></span>
+                <span>Observations <%= entries[i].observations %></span>
+                <button data-date-time="<%= entries[i].dateTime%>" class="delete">delete</button>
+            </li>
+      <%  } %>
+    </ul>
+    <script src="/main.js"></script>
+</body>
+</html>

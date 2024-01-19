@@ -7,9 +7,12 @@
 </head>
 <body>
     <h1>Great! Your observations have been Logged</h1>
-    <h3>To make another entry, click <a href="/">here.</a></h3>
-    <form action="/api/list_entries" method="GET">
-        <input type="hidden" name="currentUser" id="<%= currentUser%>">
+    <h3>To make another entry, click <form action="/api/another_new_entry" method="POST">
+        <input type="hidden" name="currentUser" value="<%=currentUser %>">
+        <button>here</button>
+    </form></h3>
+    <form action="/api/journal" method="POST">
+        <input type="hidden" name="currentUser" value="<%= currentUser%>">
         <h3>To look at your journal of entries, click <button>here</button></h3>
     </form>
     <script src="/main.js"></script>

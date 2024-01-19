@@ -8,8 +8,11 @@
 <body>
     <h1>Welcome <%= currentUser %> to your garden journal</h1>
     <h3>to make an entry please use the form below</h3>
-    <h3>to look back at all your past entries click <form action="/api/journal" method="GET"><button>here</button></form></h3>
+    <h3>to look back at all your past entries click <form action="/api/journal" method="POST"><button>here</button>
+        <input type="hidden" name="currentUser" value="<%= currentUser %>">
+    </form></h3>
     <form action="/api/new_entry" method="POST">
+        <input type="hidden" name="currentUser" value="<%= currentUser %>">
         <label for="entry_title">
             <input type="text" name="entry_title" id="entry_title">
         </label>
@@ -19,7 +22,8 @@
         <label for="observations">
             <input type="text" name="observations" id="observations">
         </label>
+        <button>Submit Obvservations</button>
     </form>
-    <script src="public/main.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>

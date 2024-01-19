@@ -28,3 +28,20 @@
     -Today I was able to set up the two posts to create a new user and to check if a user exists. 
     -I set up the landing page ejs for the user when they sign in or sign up
     -I need to figure out how to allow the user to make post and get requests from the ejs that tie directly to their database collection. 
+1/18/24
+    -Today I finished the basic functionality of the site. the user can:
+        Make a new account
+        Sign in
+        Make a new post
+        View all of the posts they have made in the past
+        Delete posts they have made
+    the site can also prevent users from entering observations that don't contain a title or observation, it will prevernt duplicate users from being created, it will present the user the log in screen again upon entering incorrect credentials, it will prompt the user to use a password at least eight characters long.
+    *** what do i want to do from here? I want to:
+        create a drop down menu of all the users previously created categories so they can easily keep track of different plants or areas of a garden.
+        i want to give the user the ability to enter search terms and filter out the results of their journal.
+        i want to create a feature that will give the user a break down of their month upon the first successfull log in of the following month
+        i need to work on the aesthetics of the site
+        i want to compile a list of resources for users to use when they are trying to diagnose issues with their plants
+        i would be interested in providing a list of seed vendors that i have personally used and enjoyed
+        i would like to create a blog section for myself or certain users to post helpful tips and tricks
+        i would like to create a reward system that gives users badges based on how many observations they have made and the longest streak of days theyve gone making observations
