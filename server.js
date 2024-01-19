@@ -129,7 +129,7 @@ MongoClient.connect(uri)
             console.log(`Server running on port ${PORT}`)
         })
 
-    .catch(error => console.error(error))
+  
 
     })
 
