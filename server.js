@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
-// const PORT = 8000
+const PORT = 8000
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
@@ -123,7 +123,7 @@ MongoClient.connect(`mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mon
          
         })
 /////////////////////////////////////////////////////////////////////////////////////////
-        app.listen(process.env.PORT, () => {
+        app.listen(process.env.PORT || PORT, () => {
             console.log(`Server running on port ${PORT}`)
         })
 
