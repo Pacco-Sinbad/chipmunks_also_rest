@@ -22,7 +22,7 @@ MongoClient.connect(`mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mon
         const loggedInUser = userLogsDB.collection('userToBeSpecified')//this is where we set the users specific log using their user name. this will keep all of their observations in their own collection. UserToBeSpecified should not contain any resources
 
         app.get('/', (req,res)=> {
-            res.sendFile(__dirname + '/index.html')
+            res.render('index.ejs')
         })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
