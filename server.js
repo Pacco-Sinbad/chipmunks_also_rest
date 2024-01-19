@@ -9,14 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
-const dotenv = require('dotenv').config()
 
-const uri = process.env.MONGOLAB_URI
-
-
-MongoClient.connect(uri)//////this is not secure. Do Not Push
-    .then(client => {
-        console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
         const userlist = userListDB.collection('Users')
         const userLogsDB = client.db('UserLogs')
@@ -129,8 +122,7 @@ MongoClient.connect(uri)//////this is not secure. Do Not Push
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`)
         })
-
-    })
+        
     .catch(error => console.error(error))
 
 
