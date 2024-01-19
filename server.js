@@ -17,7 +17,7 @@ var url = process.env.MONGOLAB_URI
 
 
 
-MongoClient.connect(url)//////this is not secure. Do Not Push
+MongoClient.connect("mongodb+srv://Mathias:pa8hp55s@userlogs.i3ktgqg.mongodb.net/?retryWrites=true&w=majority")//////this is not secure. Do Not Push
     .then(client => {
         console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
