@@ -9,10 +9,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
+
 var dotenv = require('dotenv')
 dotenv.config()
-var uri = process.env.MONGOLAB_URI
 
+const uri = process.env.MONGO_CONNECTION_STRING;
 const client = new MongoClient(uri);
 
 app.get("/items/:my_item", async (req, res) => {
