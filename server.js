@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8000
 const cors = require('cors')
 app.use (cors())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -126,7 +126,7 @@ MongoClient.connect(uri)//////this is not secure. Do Not Push
          
         })
 /////////////////////////////////////////////////////////////////////////////////////////
-        app.listen(process.env.PORT || PORT, () => {
+        app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`)
         })
 
