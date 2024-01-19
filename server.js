@@ -10,6 +10,12 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
+const dotenv = require('dotenv').config()
+const uri = process.env.MONGOLAB_URI
+
+MongoClient.connect(uri)
+    .then(client => {
+        console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
         const userlist = userListDB.collection('Users')
         const userLogsDB = client.db('UserLogs')
@@ -122,10 +128,10 @@ app.set('view engine', 'ejs')
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`)
         })
-        
+
     .catch(error => console.error(error))
 
-
+    })
 
 
  
