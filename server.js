@@ -10,10 +10,14 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
-let stringy = 'ZSJgIL8KWdrKJAlN'
+
+var dotenv = require('dotenv')
+dotenv.config()
+var url = process.env.MONGOLAB_URI
 
 
-MongoClient.connect(`mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mongodb.net/?retryWrites=true&w=majority`)
+
+MongoClient.connect(url)//////this is not secure. Do Not Push
     .then(client => {
         console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
