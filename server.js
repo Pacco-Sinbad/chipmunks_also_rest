@@ -11,7 +11,7 @@ app.set('view engine', 'ejs')
 let stringy = 'ZSJgIL8KWdrKJAlN'
 
 
-MongoClient.connect(`mongodb+srv://Mathias:${stringy}@userlogs.i3ktgqg.mongodb.net/?retryWrites=true&w=majority`)
+MongoClient.connect(`mongodb+srv://Mathias:ZSJgIL8KWdrKJAlN@userlogs.i3ktgqg.mongodb.net/?retryWrites=true&w=majority`)
     .then(client => {
         console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
