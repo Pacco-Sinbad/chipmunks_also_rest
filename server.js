@@ -33,9 +33,9 @@ MongoClient.connect(uri)
                 .findOne({username: username})
                 .then(user =>{
                     if(user){
-                        res.sendFile(__dirname + '/username_exists.html')
+                        res.render('username_exists.ejs')
                     }else if(password.length < 8){
-                        res.sendFile(__dirname + '/fix_your_password.html')
+                        res.render('fix_your_password.ejs')
                     }else{
                         userListDB.collection('Users')
                         .insertOne(newUser)
@@ -55,7 +55,7 @@ MongoClient.connect(uri)
                     if(user){
                         res.render('user_landing_page.ejs', {currentUser: usernameExisting})
                     }else{
-                        res.sendFile(__dirname + '/incorrect_credentials.html')
+                        res.render( + 'incorrect_credentials.ejs')
                     }                   
                 })
        })
@@ -128,13 +128,5 @@ MongoClient.connect(uri)
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`)
         })
-
-  
-
     })
-
-
- 
-
-
-
+    .catch(error => console.error(error))
