@@ -9,9 +9,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
-var dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config()
 
-var uri = process.env.MONGOLAB_URI
+const uri = process.env.MONGOLAB_URI
 
 
 MongoClient.connect(uri)//////this is not secure. Do Not Push
