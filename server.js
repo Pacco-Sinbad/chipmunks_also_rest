@@ -17,7 +17,7 @@ app.set('view engine', 'ejs')
 
 
 
-
+console.log('MongoDB Connection String:', url)
 
 MongoClient.connect(url)//////this is not secure. Do Not Push
     .then(client => {
