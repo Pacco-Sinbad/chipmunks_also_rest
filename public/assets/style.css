@@ -125,3 +125,10 @@
   #entryButton{
     margin-top: .3rem;
   }
+
+ @media screen and (min-width: 750px) {
+  #chipmunk{
+    width: 35rem;
+    right:10%
+  }  
+ }
