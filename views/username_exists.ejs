@@ -3,7 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/assets/reset.css">
+	<link rel="stylesheet" href="/assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+    <title>Log In</title>
+</head>
+<body>
+    <h1>Welcom to The Garden Monk!</h1>
+    <h2>Your personal online journal for gardening!!!!</h2>
+    <span>Please either log in or sign up to continue.</span>
+    <span>That username already exists. Please choose another one.</span>
+    <form action="/api/set_new_user" method="POST">
+        <label for="username">username</label>
+        <input type="text" name="username" id="username" placeholder="username">
+        <label for="password">password</label>
+        <input type="text" name="password" id="password" placeholder="password">
+        <button id="singUp">Sign Up</button>
+    </form>
+    <form action="/api/findusername" method="POST">
+        <label for="usernameExisting">username</label>
+        <input type="text" name="usernameExisting" id="usernameExisting" placeholder="username">
+        <label for="passwordExisting">password</label>
+        <input type="text" name="passwordExisting" id="passwordExisting" placeholder="password">
+        <button id="signIn">Sign In</button>
+    </form>
+    <img id="chipmunk" src="/assets/imgs/smol_boi.png" alt="as">
+    <script src="/main.js"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="/public/assets/reset.css">
+	<link rel="stylesheet" href="/public/assets/style.css">
 </head>
 <body>
     <h1>Welcom to The Garden Monk!</h1>
@@ -26,4 +64,4 @@
     </form>
     <script src="/main.js"></script>
 </body>
-</html>
+</html> -->

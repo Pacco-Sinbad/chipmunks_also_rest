@@ -3,7 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/assets/reset.css">
+	<link rel="stylesheet" href="/assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+    <title>Garden Munk</title>
+</head>
+<body>
+    <h1 id="welcome">Welcome <%= currentUser %> to your garden journal</h1>
+    <h3>to make an entry please use the form below</h3>
+    <h3>to look back at all your past entries click <form action="/api/journal" method="POST"><button>here</button>
+        <input type="hidden" name="currentUser" value="<%= currentUser %>">
+    </form></h3>
+    <form action="/api/new_entry" method="POST">
+        <input type="hidden" name="currentUser" value="<%= currentUser %>">
+        <label for="entry_title">Entry Title</label>
+            <input type="text" name="entry_title" id="entry_title">
+        
+        <label for="category">Category</label>
+            <input type="text" name="category" id="category">
+        
+        <label for="observations">Observations</label>
+            <textarea name="observations" id="observations" cols="30" rows="8"></textarea>
+        
+        <button>Submit Obvservations</button>
+    </form>
+    <img id="chipmunk" src="/assets/imgs/smol_boi.png" alt="as">
+    <script src="/main.js"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/assets/reset.css">
+	<link rel="stylesheet" href="/public/assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+    <title>Garden Munk</title>
 </head>
 <body>
     <h1>Welcome <%= currentUser %> to your garden journal</h1>
@@ -24,6 +65,7 @@
         </label>
         <button>Submit Obvservations</button>
     </form>
+    <img id="chipmunk" src="/public/assets/imgs/smol_boi.png" alt="as">
     <script src="/main.js"></script>
 </body>
-</html>
+</html> -->

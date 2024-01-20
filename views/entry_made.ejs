@@ -3,7 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/assets/reset.css">
+	<link rel="stylesheet" href="/assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+    <title>Garden Munk</title>
+</head>
+<body>
+    <h1 id="great">Great! Your observations have been Logged</h1>
+    <form action="/api/another_new_entry" method="POST">
+        <input type="hidden" name="currentUser" value="<%=currentUser %>">
+        <h3>To make another entry, click <button>here</button></h3>
+    </form>
+    <form action="/api/journal" method="POST">
+        <input type="hidden" name="currentUser" value="<%= currentUser%>">
+        <h3>To look at your journal of entries, click <button>here</button></h3>
+    </form>
+    <img id="chipmunk" src="/assets/imgs/smol_boi.png" alt="as">
+    <script src="/main.js"></script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Munk</title>
+    <link rel="stylesheet" href="/public/assets/reset.css">
+	<link rel="stylesheet" href="/public/assets/style.css">
 </head>
 <body>
     <h1>Great! Your observations have been Logged</h1>
@@ -17,4 +45,4 @@
     </form>
     <script src="/main.js"></script>
 </body>
-</html>
+</html> -->

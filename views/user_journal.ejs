@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Garden Munk</title>
+    <link rel="stylesheet" href="/assets/reset.css">
+	<link rel="stylesheet" href="/assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+    <title>Garden Munk</title>
 </head>
-<body data-current-user="<%= currentUser%>" >
-    <h1>Welcome <%=currentUser%> to your Complete Observation Journal</h1>
+<body id="bodyJournal" data-current-user="<%= currentUser%>" >
+    <h1 id="welcomeJournal">Welcome <%=currentUser%> to your Complete Observation Journal</h1>
     <span>All of the entries you have made are listed below in order of the time you made them from newest to oldest</span>
     <form action="/api/another_new_entry" method="POST">
         <input type="hidden" name="currentUser" value="<%= currentUser%>">
-        <span>To make a new observation entry click <button>here.</button></span>
+        <span>To make a new observation click <button>here.</button></span>
     </form>
         
     <ul class="entries">
-        <%let entriesRev = entries.reverse()%>
-        <% for (let i = 0; i< entries.length; i++) { %>
+        
+        <% for (let i = entries.length-1 ; i >= 0; i--) { %>
             <li class="observation">
                 <span>Date <%= entries[i].dateTime %></span>
                 <span>Title <%= entries[i].entry_title %></span>
@@ -28,3 +34,36 @@
     <script src="/main.js"></script>
 </body>
 </html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Munk</title>
+    <link rel="stylesheet" href="/public/assets/reset.css">
+	<link rel="stylesheet" href="/public/assets/style.css">
+</head>
+<body data-current-user="<%= currentUser%>" >
+    <h1>Welcome <%=currentUser%> to your Complete Observation Journal</h1>
+    <span>All of the entries you have made are listed below in order of the time you made them from newest to oldest</span>
+    <form action="/api/another_new_entry" method="POST">
+        <input type="hidden" name="currentUser" value="<%= currentUser%>">
+        <span>To make a new observation entry click <button>here.</button></span>
+    </form>
+        
+    <ul class="entries">
+        
+        <% for (let i = 0; i< entries.length; i++) { %>
+            <li class="observation">
+                <span>Date <%= entries[i].dateTime %></span>
+                <span>Title <%= entries[i].entry_title %></span>
+                <span>Category <%= entries[i].category %></span>
+                <span>Observations <%= entries[i].observations %></span>
+                <button data-date-time="<%= entries[i].dateTime%>" class="delete">delete</button>
+            </li>
+      <%  } %>
+    </ul>
+    <script src="/main.js"></script>
+</body>
+</html> -->

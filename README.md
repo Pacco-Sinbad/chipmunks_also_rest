@@ -50,3 +50,5 @@
     -I had encountered an issue where the server was not receiving the connection string in order to connect to mongodb. the solution was to add the secret file in the environments tab in render. this makes sense because without that file there is no way for mongodbclient to access the credentials. I was just unsure of how to give it the credentials in a secure way. there is documentation on the issue and i think i may have made it worse than it was but it was still a vague situation. I think the majority of the issue derived from my inexpreience.
     -that being solved i can now focus on the to do list that I described in the previous entry.
     -I also added logic that requires all usernames to be at least three characters long.
+1/20/2024
+    -I added styles to all the ejs files
