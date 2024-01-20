@@ -11,9 +11,9 @@
     <title>Garden Munk</title>
 </head>
 <body>
-    <h1 id="welcome">Welcome <%= currentUser %> to your garden journal</h1>
-    <h3>to make an entry please use the form below</h3>
-    <h3>to look back at all your past entries click <form action="/api/journal" method="POST"><button>here</button>
+    <h1 id="welcome">Welcome <%= currentUser %> to your garden journal!</h1>
+    <h3>To make an entry please use the form below.</h3>
+    <h3>To look back at all your past entries click <form action="/api/journal" method="POST"><button>here.</button>
         <input type="hidden" name="currentUser" value="<%= currentUser %>">
     </form></h3>
     <form action="/api/new_entry" method="POST">

@@ -13,7 +13,7 @@
 </head>
 <body id="bodyJournal" data-current-user="<%= currentUser%>" >
     <h1 id="welcomeJournal">Welcome <%=currentUser%> to your Complete Observation Journal</h1>
-    <span>All of the entries you have made are listed below in order of the time you made them from newest to oldest</span>
+    <span>All of the entries you have made are listed below in order of the time you made them from newest to oldest.</span>
     <form id="journalForm" action="/api/another_new_entry" method="POST">
         <input type="hidden" name="currentUser" value="<%= currentUser%>">
         <span>To make a new observation click <button>here.</button></span>

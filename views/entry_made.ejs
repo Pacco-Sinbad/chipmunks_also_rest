@@ -11,14 +11,14 @@
     <title>Garden Munk</title>
 </head>
 <body>
-    <h1 id="great">Great! Your observations have been Logged</h1>
+    <h1 id="great">Great! Your observations have been logged.</h1>
     <form action="/api/another_new_entry" method="POST">
         <input type="hidden" name="currentUser" value="<%=currentUser %>">
-        <h3>To make another entry, click <button>here</button></h3>
+        <h3>To make another entry, click <button>here.</button></h3>
     </form>
     <form action="/api/journal" method="POST">
         <input type="hidden" name="currentUser" value="<%= currentUser%>">
-        <h3>To look at your journal of entries, click <button>here</button></h3>
+        <h3>To look at your journal of entries, click <button>here.</button></h3>
     </form>
     <img id="chipmunk" src="/assets/imgs/smol_boi.png" alt="as">
     <script src="/main.js"></script>
