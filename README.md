@@ -52,3 +52,6 @@
     -I also added logic that requires all usernames to be at least three characters long.
 1/20/2024
     -I added styles to all the ejs files
+    -I added a cute chipmunk pixel art
+    -I made corrections to all of the copy and titles
+    -I spent some time testing functionality and added a few media queries
