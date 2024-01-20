@@ -57,7 +57,7 @@ MongoClient.connect(uri)
                     if(user){
                         res.render('user_landing_page.ejs', {currentUser: usernameExisting})
                     }else{
-                        res.render( + 'incorrect_credentials.ejs')
+                        res.render('incorrect_credentials.ejs')
                     }                   
                 })
        })
