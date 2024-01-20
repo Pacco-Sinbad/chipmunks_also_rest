@@ -69,6 +69,8 @@
     bottom: 0;
     right: 0;
     width: 40%;
+    z-index: 0;
+    
   }
 
   .entries{
@@ -129,6 +131,7 @@
  @media screen and (min-width: 750px) {
   #chipmunk{
     width: 35rem;
-    right:10%
+    left:5%;
+    transform: rotateY(180deg);
   }  
  }
