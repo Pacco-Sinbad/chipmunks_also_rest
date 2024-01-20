@@ -67,7 +67,25 @@
   #chipmunk{
     position:absolute;
     bottom: 0;
-    align-self: center;
+    right: 0;
+    width: 40%;
+  }
+
+  .entries{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    border-top: 3px solid rgb(55, 45, 32);
+  }
+  .observation{
+    padding: .2rem;
+    margin-top: .5rem;
+    border-bottom: 2px dashed rgb(55, 45, 32);
+  }
+  .observation span, .observation button{
+    margin: .5rem auto;
+  }
+  .observation button{
+    width: 18%;
   }
   
 
@@ -84,17 +102,26 @@
   #welcome,#welcomeJournal{
     font-size: 3rem;
   }
-
+  #welcomeJournal{
+    margin-top: 2rem;
+  }
   #bodyJournal{
-    scroll-behavior: smooth;
-    overflow-y: scroll;
+    height: auto;
   }
 
   .observation{
     display: flex;
     flex-direction: column;
   }
-  .observation button{
-    width: 10%;
-    margin: 2rem auto 0 auto;
+ 
+  .observation span{
+    font-size: 1.5rem;
+  }
+
+  #journalForm{
+    margin-top: 0;
+  }
+
+  #entryButton{
+    margin-top: .3rem;
   }
