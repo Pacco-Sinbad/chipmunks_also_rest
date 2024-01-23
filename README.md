@@ -78,13 +78,13 @@
 
     *** what do i want to do from here? I want to:
 
-        create a drop down menu of all the users previously created categories so they can easily keep track of different plants or areas of a garden.
+        XXXXcreate a drop down menu of all the users previously created categories so they can easily keep track of different plants or areas of a garden.XXXX
 
         i want to give the user the ability to enter search terms and filter out the results of their journal.
 
         i want to create a feature that will give the user a break down of their month upon the first successfull log in of the following month
 
-        i need to work on the aesthetics of the site
+        XXXXi need to work on the aesthetics of the siteXXXX
 
         i want to compile a list of resources for users to use when they are trying to diagnose issues with their plants
 
@@ -119,3 +119,15 @@
     -I spent some time testing functionality and added a few media queries
     
     ***The next steps will be to add drop down menus in the designated areas of the code to allow the user to reuse categories they have created and to sort their journal based on category or date range.
+
+
+
+1/22/2024
+
+    -today I implemented the dropdown functionality to retrieve previously used category names with respect to the specific user.
+
+    -I also created a new ejs file for first time users.
+
+    -Creating this functionality taught me about how to handle arrays when going from the server to the client and back.
+
+    -There is still a lot I want to work on with this site that will fully flush out it capabilities as outlined in 1/18/2024

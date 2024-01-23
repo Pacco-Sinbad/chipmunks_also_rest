@@ -24,10 +24,10 @@
         
         <% for (let i = entries.length-1 ; i >= 0; i--) { %>
             <li class="observation">
-                <span>Date <%= entries[i].dateTime %></span>
-                <span>Title <%= entries[i].entry_title %></span>
-                <span>Category <%= entries[i].category %></span>
-                <span>Observations <%= entries[i].observations %></span>
+                <span>Date:<br> <%= entries[i].dateTime %></span>
+                <span>Title:<br> <%= entries[i].entry_title %></span>
+                <span>Category:<br> <%= entries[i].category %></span>
+                <span>Observations:<br> <%= entries[i].observations %></span>
                 <button data-date-time="<%= entries[i].dateTime%>" class="delete">delete</button>
             </li>
       <%  } %>

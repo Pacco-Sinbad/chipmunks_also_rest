@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
     <title>Garden Munk</title>
 </head>
+<% uniqueCategories = JSON.parse(clientArray); %>
 <body>
     <h1 id="welcome">Welcome <%= currentUser %> to your garden journal!</h1>
     <h3>To make an entry please use the form below.</h3>
@@ -18,13 +19,20 @@
     </form></h3>
     <form action="/api/new_entry" method="POST">
         <input type="hidden" name="currentUser" value="<%= currentUser %>">
+        <!-- <input type="hidden" name="uniqueCategories" value="<%= JSON.stringify(uniqueCategories) %>"> -->
         <label for="entry_title">Entry Title</label>
             <input type="text" name="entry_title" id="entry_title">
         
         <label for="category">Category</label>
-            <!-- the user should be able to click a drop down menu here to select from categories they have previously used. -->
-            <input type="text" name="category" id="category">
-        
+            <input type="text" name="category" id="newCategory" placeholder="Category">
+            <select class="dropDown" name="category" id="category">
+                <option value="" disabled selected>Select a Previous Category</option>
+                <option value=""></option>
+                <% for (let i = uniqueCategories.length - 1; i >= 0; i --) { %>
+                    <option value="<%= uniqueCategories[i] %>"><%= uniqueCategories[i] %></option>
+                <% } %>
+            </select>
+
         <label for="observations">Observations</label>
             <textarea name="observations" id="observations" cols="30" rows="8" placeholder="Drag the bottom right corner to adjust the size of the text field."></textarea>
         

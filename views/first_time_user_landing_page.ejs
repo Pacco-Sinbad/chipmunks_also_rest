@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/reset.css">
+	<link rel="stylesheet" href="/assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+    <title>Garden Munk</title>
+</head>
+<body>
+    <h1 id="welcome">Welcome <%= currentUser %> to your garden journal!</h1>
+    <h3>To make an entry please use the form below.</h3>
+    <h2>Time to make your first journal entry!</h2>
+    <form action="/api/new_entry" method="POST">
+        <input type="hidden" name="currentUser" value="<%= currentUser %>">
+        <label for="entry_title">Entry Title</label>
+            <input type="text" name="entry_title" id="entry_title">
+        
+        <label for="category">Category</label>
+            <input type="text" name="category" id="newCategory" placeholder="New Category">
+            </select>
+
+        <label for="observations">Observations</label>
+            <textarea name="observations" id="observations" cols="30" rows="8" placeholder="Drag the bottom right corner to adjust the size of the text field."></textarea>
+        
+        <button id="entryButton">Submit Obvservations</button>
+    </form>
+    <img id="chipmunk" src="/assets/imgs/smol_boi.png" alt="as">
+    <script src="/main.js"></script>
+</body>
+</html>

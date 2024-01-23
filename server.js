@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const PORT = process.env.PORT || 10000
-const cors = require('cors')
+const cors = require('cors');
+const e = require('express');
 app.use (cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -41,8 +42,9 @@ MongoClient.connect(uri)
                     }else{
                         userListDB.collection('Users')
                         .insertOne(newUser)
+                        
                         .then(result => {
-                            res.render('user_landing_page.ejs', {currentUser: username })
+                            res.render('first_time_user_landing_page.ejs', {currentUser: username })//need to map thing out from here and create this file
                         })
                     }
                 })
@@ -55,22 +57,40 @@ MongoClient.connect(uri)
                 .findOne({username: usernameExisting, password: passwordExisting})
                 .then(user => {
                     if(user){
-                        res.render('user_landing_page.ejs', {currentUser: usernameExisting})
+                        /////
+                        userLogsDB.collection(usernameExisting)
+                        .find()
+                        .toArray()
+                        .then(results => {
+                            const uniqueCategories = [...new Set(results.map(obj => obj.category))]
+                            const clientArray = JSON.stringify(uniqueCategories); 
+                            console.log(uniqueCategories)
+                                res.render('user_landing_page.ejs', {clientArray, currentUser: usernameExisting})
+                            })
+                        
+                        /////
+                            // res.render('user_landing_page.ejs', {currentUser: usernameExisting})
                     }else{
                         res.render('incorrect_credentials.ejs')
                     }                   
                 })
+               
        })
   /////////////////////////////////////////////////////////////////////////////////////////////
         app.post('/api/new_entry', (req,res)=> {
             const Time = new Date();
             const dateTime = Time.toLocaleString()
-            
-            const {entry_title, category, observations} = req.body;
+            //const uniqueCategories = JSON.parse(req.body.uniqueCategories)//this is unnecessary code because we find the array of categories again when we click to make another new entry. 
+            let {entry_title, category, observations} = req.body;
             const currentUser = req.body.currentUser;
-            if(entry_title == '' || observations == ''){
-                return res.status(404).send('Please fill out the title and observations fields')
+            if(entry_title == '' || observations == '' || category == ''){
+                return res.status(404).send('Please fill out all fields')
             };
+            if(Array.isArray(category)){
+                category = category.filter(x => x.length > 0)[0]
+            }
+           
+
             const newEntry = {
                 dateTime,
                 entry_title,
@@ -82,6 +102,7 @@ MongoClient.connect(uri)
                 .then(result =>{
                     console.log(result)
                     console.log(dateTime)
+                    console.log(category)
                     res.render('entry_made.ejs', {currentUser: currentUser})
                 })
                 .catch(error => console.error(error))          
@@ -89,7 +110,15 @@ MongoClient.connect(uri)
         ///////
         app.post('/api/another_new_entry', (req, res) => {
             const currentUser = req.body.currentUser
-            res.render('user_landing_page.ejs', {currentUser: currentUser})
+            userLogsDB.collection(currentUser)
+                        .find()
+                        .toArray()
+                        .then(results => {
+                            const uniqueCategories = [...new Set(results.map(obj => obj.category))]
+                            const clientArray = JSON.stringify(uniqueCategories); 
+                            console.log(uniqueCategories)
+                            res.render('user_landing_page.ejs', {clientArray, currentUser: currentUser})
+                            })
         })
         ///////
         app.post('/api/journal', (req,res) =>{

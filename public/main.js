@@ -38,3 +38,10 @@ document.querySelectorAll('.delete').forEach(button => {
         })
     })
 }) 
+
+
+
+function prepareFormData() {
+    const uniqueCategories = JSON.stringify(uniqueCategories)
+    document.getElementById('uniqueCategoriesInput').value = uniqueCategories
+}
