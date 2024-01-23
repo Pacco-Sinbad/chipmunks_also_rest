@@ -18,9 +18,9 @@ MongoClient.connect(uri)
     .then(client => {
         console.log('Connected to userlogs')
         const userListDB = client.db('UserList')
-        const userlist = userListDB.collection('Users')
+        //const userlist = userListDB.collection('Users')
         const userLogsDB = client.db('UserLogs')
-        const loggedInUser = userLogsDB.collection('userToBeSpecified')//this is where we set the users specific log using their user name. this will keep all of their observations in their own collection. UserToBeSpecified should not contain any resources
+       // const loggedInUser = userLogsDB.collection('userToBeSpecified')//this is where we set the users specific log using their user name. this will keep all of their observations in their own collection. UserToBeSpecified should not contain any resources
 
         app.get('/', (req,res)=> {
             res.render('index.ejs')
@@ -83,14 +83,13 @@ MongoClient.connect(uri)
             //const uniqueCategories = JSON.parse(req.body.uniqueCategories)//this is unnecessary code because we find the array of categories again when we click to make another new entry. 
             let {entry_title, category, observations} = req.body;
             const currentUser = req.body.currentUser;
-            if(entry_title == '' || observations == '' || category == ''){
-                return res.status(404).send('Please fill out all fields')
-            };
             if(Array.isArray(category)){
                 category = category.filter(x => x.length > 0)[0]
-            }
-           
-
+            };
+            console.log(category)
+            if(entry_title == '' || observations == '' || category == '' || category === undefined){
+                return res.status(404).send('Please fill out all fields')
+            };
             const newEntry = {
                 dateTime,
                 entry_title,

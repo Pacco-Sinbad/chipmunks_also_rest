@@ -131,3 +131,17 @@
     -Creating this functionality taught me about how to handle arrays when going from the server to the client and back.
 
     -There is still a lot I want to work on with this site that will fully flush out it capabilities as outlined in 1/18/2024
+
+
+
+1/23/2024
+
+    -I removed some logic that dealt with processing data from ejs before it was sent to the server from the client js
+
+    -I added logic to the client js that clears the input field of the entry form if the user makes a selection from the dropdown menu
+
+    -I moved the logic that tests if category is an array above the logic that tests if it is empty.
+
+    -I added a sign out button on all the pages that made sense
+
+    -I changed the css to remove the 100vh on all the pages

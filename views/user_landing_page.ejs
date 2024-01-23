@@ -10,7 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
     <title>Garden Munk</title>
 </head>
+<header class="signOut">
+    <form class="signOut" action="/" method="GET">
+        <button >Sign Out</button>
+    </form>   
+</header>
 <% uniqueCategories = JSON.parse(clientArray); %>
+
 <body>
     <h1 id="welcome">Welcome <%= currentUser %> to your garden journal!</h1>
     <h3>To make an entry please use the form below.</h3>
@@ -26,8 +32,8 @@
         <label for="category">Category</label>
             <input type="text" name="category" id="newCategory" placeholder="Category">
             <select class="dropDown" name="category" id="category">
-                <option value="" disabled selected>Select a Previous Category</option>
-                <option value=""></option>
+                <option value="">Select a Previous Category</option>
+                
                 <% for (let i = uniqueCategories.length - 1; i >= 0; i --) { %>
                     <option value="<%= uniqueCategories[i] %>"><%= uniqueCategories[i] %></option>
                 <% } %>
